@@ -1,0 +1,16 @@
+new project:    django-admin startproject project_name
+new app:        python manage.py startapp app_name
+run_server:     python manage.py runserver
+end_server:     ctrl+c
+
+
+'''
+    load env -> $PYTHON_ENV_PD
+    exit from env -> $PYTHON_ENV_END
+    create env:     python3 -m venv env_name
+    env activate: source env_env/bin/activate
+    env deactivate: deactivate
+    
+    no variable for DJANGO env
+'''
+source $HOME/Desktop/py_env/env_pd_np/bin/activate
