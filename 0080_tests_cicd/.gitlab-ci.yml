@@ -1,0 +1,42 @@
+stages:
+  - test
+  - build_stage
+  - test_time
+
+test_py:
+  stage: test
+  image: python:3.10.8-slim-buster
+  before_script:
+    #- pip install -r requirments.txt
+  script:
+    - echo "Py script start"
+    - python3 test_math_func.py
+    - python3 test_cls_student.py
+
+
+build_car:
+  image: alpine
+  stage: build_stage
+  script:
+    - echo "Building a car"
+    #- sleep 600
+    - mkdir build
+    - cd build
+    - touch car.txt
+    - echo "car.txt created"
+    - echo "chassis" > car.txt
+    - cat car.txt
+    - echo "fin"
+  #keep everythin what is in build path to another stage
+  artifacts:
+    paths:
+      - build/
+
+test_car:
+  image: alpine
+  stage: test_time
+  script:
+    #test -f - if file exist
+    - test -f build/car.txt
+    - cd build
+    - grep "chassis" car.txt

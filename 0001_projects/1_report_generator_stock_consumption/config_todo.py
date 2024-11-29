@@ -1,3 +1,7 @@
+#
+#redesign all and describe it
+
+#
 
 #fix that - remove unused def, extract const values into structures, create structures for client for easy update
 

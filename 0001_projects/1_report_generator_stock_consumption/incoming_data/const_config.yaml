@@ -1,0 +1,22 @@
+cfg_setup:
+  - seed_number: int
+  - size_of_data: int
+  - product_list: 
+      - list
+      - str
+  - client_columns:
+      - list
+      - str
+
+seed_number: 8
+size_of_data: 10
+product_list:
+  - Pork
+  - Beef
+  - Wheat
+client_columns:
+  - consumption
+  - wh_stock
+  - orders
+  - days_to_stock
+  - item
