@@ -1,22 +1,27 @@
 cfg_setup:
   - seed_number: int
   - size_of_data: int
-  - product_list: 
-      - list
-      - str
-  - client_columns:
-      - list
-      - str
+  - product_list: [list,str]
+  - client_columns:  [list,str]
+  - columns_to_generate: [consumption,wh_stock,orders,days_to_stock,item]
+  - seed_number: 8
+  - size_of_data: 10
 
-seed_number: 8
-size_of_data: 10
-product_list:
-  - Pork
-  - Beef
-  - Wheat
-client_columns:
-  - consumption
-  - wh_stock
-  - orders
-  - days_to_stock
-  - item
+products:
+  - Pork:
+    - base_wh_stock: 5
+    - base_consumption: 2
+    - base_boundry_for_generate_orders_down: [1,8]
+    - base_boundry_for_generate_consumption_up: [2,8]
+
+  - Beef:
+    - base_wh_stock:    50
+    - base_consumption: 22
+    - base_boundry_for_generate_orders_down:    [5,45]
+    - base_boundry_for_generate_consumption_up: [2,18]
+
+  - Wheat:
+    - base_wh_stock:    500
+    - base_consumption: 222
+    - base_boundry_for_generate_orders_down:    [45,745]
+    - base_boundry_for_generate_consumption_up: [2,22]
