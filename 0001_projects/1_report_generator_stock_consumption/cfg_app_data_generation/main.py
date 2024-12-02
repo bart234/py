@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 import os
 import yaml
+from dataclasses import dataclass
 
 #split 
 #make data generator based on data, crate folder with data and 
@@ -23,23 +24,37 @@ def load_file()->dict:
     return dict_for_config
 
 
+class Product:
+    name: str
+    consumption: int
+    wh_stock: int
+    gen_orders:list
+    gen_consumption:list
 
 class ProcessConfig:
     def __init__(self,dict_for_config) -> None:
-        self.types_in_dict = dict_for_config['cfg_setup']
-        self.types_in_dict = dict_for_config['products']
-        self.wh_stock = None
-        self.consumption = None
+        self.cfg_setup_in_dict = dict_for_config['cfg_setup']
+        self.product_in_dict = dict_for_config['products']
+        self.product_list = [k for k in self.product_in_dict.key()]
+        self.product_list_and_cfg = []
+        for k,v in self.product_in_dict.items():
+            p =Product(k,
+                        v['base_wh_consumption'],
+                        v['base_wh_stock'],
+                        v['base_boundry_for_generate_orders_down'],
+                        v['base_boundry_for_generate_consumption_up'])
+            self.product_list_cfg.append(p)
 
-    class Product:
-        def __init__(self, name, wh_stock,consumption) -> None:
-            self.name =name
-            self.wh_stock = wh_stock
-            self.consumption=consumption
-        #TODO: finish class and do preparing  functions
-    def prepare_wh_stock_and_consumption():
-        wh_stock =pd.DataFrame({self._consumption_data_cols[0]:[2,22,222],
-                                                   self._consumption_data_cols[1]:[5,50,500]},index=self._product_list)
+    def PrepareConsumptionAndStockTable(self)->pd.DataFrame:
+        self.wh_stock =pd.DataFrame({self._consumption_data_cols[0]:[2,22,222],
+                                self._consumption_data_cols[1]:[5,50,500]},index=self._product_list)
+
+    def PrepareDataForEachProduct(self)->list:
+        pass
+
+
+
+  
 
 
 self._wh_stock_consumption = pd.DataFrame({self._consumption_data_cols[0]:[2,22,222],
